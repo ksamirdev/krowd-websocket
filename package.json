@@ -1,0 +1,16 @@
+{
+  "name": "neobrains-websocket",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "socket.io": "^4.6.1"
+  }
+}

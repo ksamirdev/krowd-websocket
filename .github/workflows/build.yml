@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Install dependencies
+        run: yarn install
+      - name: Build TypeScript
+        run: yarn build
+      - name: Checkout and push to build branch
+        run: |
+          git checkout -b build
+          git config --global user.email "samirdiff@proton.me"
+          git config --global user.name "Samir"
+          git add --all
+          git rm -r src 
+          git rm -r .github
+          git rm .gitignore
+          git rm tsconfig.json
+          git rm yarn.lock
+          git commit -m "Build TypeScript"
+          git push origin build -f
+      - name: Clean up workspace
+        run: rm -rf *
